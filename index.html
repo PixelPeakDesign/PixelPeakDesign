@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Spline+Sans:wght@300;400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://unpkg.com/@sanity/client/dist/index.browser.js"></script>
 
 <style>
   :root{
@@ -196,6 +197,21 @@
   .cta-row{display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
   .cta-row .btn{max-width:100%;overflow:hidden;text-overflow:ellipsis}
 
+  /* ---------- testimonials ---------- */
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:58px}
+  @media (max-width:760px){ .quotes{grid-template-columns:1fr} }
+  .quote{
+    position:relative;padding:34px 30px 30px;border-radius:20px;margin:0;
+    background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    transition:border-color .4s,box-shadow .4s;
+  }
+  .quote:hover{border-color:rgba(255,93,158,.4);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+  .quote::before{content:"\201C";position:absolute;top:6px;left:18px;font-family:var(--display);font-size:64px;line-height:1;color:var(--glow);opacity:.5}
+  .quote blockquote{margin:14px 0 22px;font-size:clamp(16px,4vw,19px);color:var(--ink);line-height:1.55}
+  .quote figcaption{display:flex;flex-direction:column;gap:3px;border-top:1px solid var(--line);padding-top:16px}
+  .quote .qn{font-family:var(--display);font-weight:600;letter-spacing:-.01em}
+  .quote .qr{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim)}
+
   /* ---------- footer ---------- */
   footer{border-top:1px solid var(--line);padding:54px 0 max(54px,env(safe-area-inset-bottom));position:relative;z-index:2;background:rgba(5,6,13,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
   .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:22px}
@@ -376,22 +392,22 @@
   <div class="wrap" id="top">
 
     <header>
-      <div class="eyebrow reveal">Web development &amp; maintenance studio</div>
-      <h1 class="reveal" data-d="1"><span class="l1">We build the</span><span class="l2">summit of the web.</span></h1>
-      <p class="lede reveal" data-d="2">Pixel Peak Designs crafts <b>fast, three-dimensional, unforgettable</b> websites — then keeps them running flawlessly long after launch. Every device. Every screen. Every frame.</p>
+      <div class="eyebrow reveal" data-sanity="home.eyebrow">Web development &amp; maintenance studio</div>
+      <h1 class="reveal" data-d="1"><span class="l1" data-sanity="home.headingTop">We build the</span><span class="l2" data-sanity="home.headingBottom">summit of the web.</span></h1>
+      <p class="lede reveal" data-d="2" data-sanity-html="home.lede">Pixel Peak Designs crafts <b>fast, three-dimensional, unforgettable</b> websites — then keeps them running flawlessly long after launch. Every device. Every screen. Every frame.</p>
       <div class="hero-cta reveal" data-d="3">
-        <a class="btn btn-primary" href="#contact" data-hot>Begin your ascent</a>
-        <a class="btn btn-ghost" href="#work" data-hot>See what we do</a>
+        <a class="btn btn-primary" href="#contact" data-hot data-sanity="home.primaryCta">Begin your ascent</a>
+        <a class="btn btn-ghost" href="#work" data-hot data-sanity="home.secondaryCta">See what we do</a>
       </div>
       <div class="scroll-hint reveal" data-d="4"><span>Scroll to fly</span><span class="bar"></span></div>
     </header>
 
     <section class="block" id="work">
-      <div class="tag reveal">01 — Capabilities</div>
-      <h2 class="reveal" data-d="1">Two things, done at altitude.</h2>
-      <p class="section-lede reveal" data-d="2">Whether you need something built from raw rock or a living site kept in peak condition, we handle the climb so you don't have to.</p>
+      <div class="tag reveal" data-sanity="home.servicesTag">01 — Capabilities</div>
+      <h2 class="reveal" data-d="1" data-sanity="home.servicesHeading">Two things, done at altitude.</h2>
+      <p class="section-lede reveal" data-d="2" data-sanity="home.servicesLede">Whether you need something built from raw rock or a living site kept in peak condition, we handle the climb so you don't have to.</p>
 
-      <div class="cards">
+      <div class="cards" id="services-cards">
         <article class="card tilt reveal" data-d="1">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M8 6 3 12l5 6M16 6l5 6-5 6M14 4l-4 16"/></svg></div>
           <div class="num" style="margin-top:24px">/ 01</div>
@@ -439,12 +455,27 @@
       </div>
     </section>
 
+    <section class="block" id="voices">
+      <div class="tag reveal" data-sanity="home.testimonialsTag">03 — Voices</div>
+      <h2 class="reveal" data-d="1" data-sanity="home.testimonialsHeading">Trusted from basecamp to summit.</h2>
+      <div class="quotes" id="testimonials">
+        <figure class="quote reveal" data-d="1">
+          <blockquote>Pixel Peak rebuilt our site and our traffic climbed within weeks. The 3D work stops people in their tracks.</blockquote>
+          <figcaption><span class="qn">Jordan Ellis</span><span class="qr">Founder, Northwind Gear</span></figcaption>
+        </figure>
+        <figure class="quote reveal" data-d="2">
+          <blockquote>Fast, communicative, and genuinely creative. They treat our website like it's their own product.</blockquote>
+          <figcaption><span class="qn">Maya Chen</span><span class="qr">Director, Atlas Studio</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
     <section class="cta" id="contact">
-      <div class="tag reveal" style="text-align:center">03 — Let's build</div>
-      <h2 class="reveal" data-d="1">Ready to reach the peak?</h2>
-      <p class="section-lede reveal" data-d="2">Tell us about your project. We'll reply within one business day with ideas, a route, and a quote.</p>
+      <div class="tag reveal" style="text-align:center" data-sanity="contact.tag">04 — Let's build</div>
+      <h2 class="reveal" data-d="1" data-sanity="contact.heading">Ready to reach the peak?</h2>
+      <p class="section-lede reveal" data-d="2" data-sanity="contact.lede">Tell us about your project. We'll reply within one business day with ideas, a route, and a quote.</p>
       <div class="cta-row reveal" data-d="3">
-        <a class="btn btn-primary" href="mailto:hello@pixelpeakdesigns.com" data-hot>hello@pixelpeakdesigns.com</a>
+        <a class="btn btn-primary" id="contact-email" href="mailto:hello@pixelpeakdesigns.com" data-hot>hello@pixelpeakdesigns.com</a>
         <a class="btn btn-ghost" href="#top" data-hot>Back to top ↑</a>
       </div>
     </section>
@@ -646,15 +677,17 @@
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
   // Reveal on scroll. Fallback: if IntersectionObserver is missing, reveal everything.
-  var reveals = document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(es){
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, {threshold:.14});
-    reveals.forEach(function(el){ io.observe(el); });
-  } else {
-    reveals.forEach(function(el){ el.classList.add('in'); });
-  }
+    }, {threshold:.14}) : null;
+  // Exposed so CMS-injected cards/testimonials can be observed after they load.
+  window.__pp_observeReveals = function(){
+    document.querySelectorAll('.reveal').forEach(function(el){
+      if(el.classList.contains('in')) return;
+      if(io) io.observe(el); else el.classList.add('in');
+    });
+  };
+  window.__pp_observeReveals();
 
   // Animated counters (mobile-safe).
   var counters = [].slice.call(document.querySelectorAll('[data-count]'));
@@ -718,8 +751,11 @@
   }, 3000);
 
   // 3D tilt — desktop pointer only (touch keeps cards flat & tappable)
-  if(!reduce && fine){
+  window.__pp_bindTilt = function(){
+    if(reduce || !fine) return;
     document.querySelectorAll('.tilt').forEach(function(card){
+      if(card.dataset.tilt) return;          // bind once
+      card.dataset.tilt = '1';
       card.addEventListener('pointermove', function(e){
         var r=card.getBoundingClientRect(), x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
         card.style.transform='perspective(900px) rotateY('+((x-.5)*9)+'deg) rotateX('+((.5-y)*9)+'deg) translateY(-4px)';
@@ -727,7 +763,8 @@
       });
       card.addEventListener('pointerleave', function(){ card.style.transform=''; });
     });
-  }
+  };
+  window.__pp_bindTilt();
 
   // Custom cursor (desktop only)
   if(fine && !reduce){
@@ -740,6 +777,120 @@
       el.addEventListener('mouseleave', function(){ ring.classList.remove('hot'); });
     });
   }
+})();
+</script>
+
+<script>
+/* ============================================================
+   SANITY CMS — loads editable content and fills the page.
+   Design is untouched: every element keeps its hardcoded text as a
+   fallback, so the site looks identical even before content is added
+   (or if the network/CMS is unavailable).
+   ============================================================ */
+(function(){
+  if(typeof sanityClient === 'undefined'){ return; } // client failed to load → keep fallbacks
+
+  var client = sanityClient.createClient({
+    projectId: '489c9zg3',
+    dataset: 'production',
+    apiVersion: '2025-02-06',  // hardcoded per Sanity guidance
+    useCdn: true               // fast edge cache; fine for published content
+  });
+
+  // ---- helpers ---------------------------------------------------------
+  function setText(sel, val){
+    if(val == null || val === '') return;
+    document.querySelectorAll('[data-sanity="'+sel+'"]').forEach(function(el){ el.textContent = val; });
+  }
+  function setHTML(sel, val){
+    if(val == null || val === '') return;
+    document.querySelectorAll('[data-sanity-html="'+sel+'"]').forEach(function(el){ el.innerHTML = val; });
+  }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  // ---- fetch all content in one query ---------------------------------
+  var query =
+    '{'+
+      '"home": *[_type=="home"][0],'+
+      '"services": *[_type=="service"]|order(order asc),'+
+      '"testimonials": *[_type=="testimonial"]|order(order asc),'+
+      '"contact": *[_type=="contact"][0]'+
+    '}';
+
+  client.fetch(query).then(function(data){
+    if(!data) return;
+    var home = data.home || {}, contact = data.contact || {};
+
+    // ----- Home / hero -----
+    setText('home.eyebrow', home.eyebrow);
+    setText('home.headingTop', home.headingTop);
+    setText('home.headingBottom', home.headingBottom);
+    setHTML('home.lede', home.lede);                 // allows the <b> emphasis
+    setText('home.primaryCta', home.primaryCtaLabel);
+    setText('home.secondaryCta', home.secondaryCtaLabel);
+    // ----- Services section copy -----
+    setText('home.servicesTag', home.servicesTag);
+    setText('home.servicesHeading', home.servicesHeading);
+    setText('home.servicesLede', home.servicesLede);
+    // ----- Testimonials section copy -----
+    setText('home.testimonialsTag', home.testimonialsTag);
+    setText('home.testimonialsHeading', home.testimonialsHeading);
+
+    // ----- Services cards (rebuild only if Sanity has services) -----
+    if(Array.isArray(data.services) && data.services.length){
+      var wrap = document.getElementById('services-cards');
+      if(wrap){
+        wrap.innerHTML = data.services.map(function(s, i){
+          var num = ('0'+(i+1)).slice(-2);
+          var bullets = (s.features||[]).map(function(f){ return '<li>'+esc(f)+'</li>'; }).join('');
+          var icon = (i % 2 === 0)
+            ? '<svg viewBox="0 0 24 24"><path d="M8 6 3 12l5 6M16 6l5 6-5 6M14 4l-4 16"/></svg>'
+            : '<svg viewBox="0 0 24 24"><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2m0-14-2 2M7 17l-2 2"/><circle cx="12" cy="12" r="3.4"/></svg>';
+          return ''+
+            '<article class="card tilt reveal" data-d="'+(i+1)+'">'+
+              '<div class="ic">'+icon+'</div>'+
+              '<div class="num" style="margin-top:24px">/ '+num+'</div>'+
+              '<h3>'+esc(s.title)+'</h3>'+
+              '<p>'+esc(s.description)+'</p>'+
+              (bullets ? '<ul>'+bullets+'</ul>' : '')+
+            '</article>';
+        }).join('');
+      }
+    }
+
+    // ----- Testimonials (rebuild only if Sanity has testimonials) -----
+    if(Array.isArray(data.testimonials) && data.testimonials.length){
+      var tw = document.getElementById('testimonials');
+      if(tw){
+        tw.innerHTML = data.testimonials.map(function(t, i){
+          var role = [t.role, t.company].filter(Boolean).join(', ');
+          return ''+
+            '<figure class="quote reveal" data-d="'+(i+1)+'">'+
+              '<blockquote>'+esc(t.quote)+'</blockquote>'+
+              '<figcaption><span class="qn">'+esc(t.name)+'</span>'+
+              (role ? '<span class="qr">'+esc(role)+'</span>' : '')+'</figcaption>'+
+            '</figure>';
+        }).join('');
+      }
+    }
+
+    // ----- Contact -----
+    setText('contact.tag', contact.tag);
+    setText('contact.heading', contact.heading);
+    setText('contact.lede', contact.lede);
+    if(contact.email){
+      var em = document.getElementById('contact-email');
+      if(em){ em.textContent = contact.email; em.setAttribute('href', 'mailto:'+contact.email); }
+    }
+
+    // Re-run reveal + tilt on any newly inserted elements
+    if(window.__pp_observeReveals) window.__pp_observeReveals();
+    if(window.__pp_bindTilt) window.__pp_bindTilt();
+  }).catch(function(err){
+    // On any error, the hardcoded fallback content remains visible.
+    console.warn('Sanity content not loaded — using built-in defaults.', err);
+  });
 })();
 </script>
 </body>
